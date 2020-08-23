@@ -40,11 +40,17 @@ public class ListaEnlazada {
         public void eliminar(int dato){
             Nodo delete = this.buscar(dato);
             Nodo before = primero;
-            while (before != null){
-                if(before.getRef().equals(delete)){
+
+            while (before != null && delete != null){
+                if(before.getRef() != null && before.getRef().equals(delete) ){
                     before.setRef(delete.getRef());
                     delete.setRef(null);
                     break;
+
+
+                }
+                else if(before == primero){
+                    primero = null;
                 }
                 before  = before.getRef();
             }
@@ -81,13 +87,10 @@ public class ListaEnlazada {
     public static void main(String[] args) {
         ListaEnlazada  lista = new ListaEnlazada();
         lista.agregarI(3);
-        lista.agregar(4);
-        lista.agregar(5);
-        lista.agregar(13);
-        lista.agregar(50);
-        lista.eliminar(5);
-        System.out.println(lista.buscar(5));
+        lista.eliminar(3);
+
         lista.ver();
+
 
     }
 
